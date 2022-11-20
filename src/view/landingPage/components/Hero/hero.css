@@ -1,11 +1,3 @@
-/* .hero {
-  background-color: white;
-  font-family: "Montserrat", sans-serif;
-
-} */
-/* .css-mhc70k-MuiGrid-root > .MuiGrid-item {
-  padding-top: 0px !important;
-} */
 
 .main_text {
   margin-top: 100px;
@@ -89,7 +81,7 @@
 }
 .card_example img {
   width: 100%;
-  height: 380px;
+  height: 400px;
   object-fit: cover;
   -webkit-transition: border-radius 1s;
   transition: border-radius 1s;

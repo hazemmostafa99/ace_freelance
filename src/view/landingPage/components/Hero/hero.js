@@ -2,13 +2,13 @@ import React from "react";
 import "./hero.css";
 
 import FadeInSection from "../../../../shared/fade";
-import { Box, Grid } from "@mui/material";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Autoplay, EffectCoverflow } from "swiper";
+import {  Autoplay } from "swiper";
 
 const Herosection = () => {
   return (
