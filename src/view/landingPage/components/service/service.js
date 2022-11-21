@@ -1,78 +1,132 @@
-import React from "react";
+import React, { useState } from "react";
 import "./service.css";
 import FadeInSection from "../../../../shared/fade";
 import useOnScreen from "../../../../shared/intersection";
+import { useInView } from "react-intersection-observer";
 const Service = () => {
-  const [isWeb, setWeb] = React.useState(false);
-  const [isMark, setMark] = React.useState(false);
-  const [isMech, setMech] = React.useState(false);
-  const [isGrpahic, setGrpahic] = React.useState(false);
-//   const ref = React.useRef()
-//   const isVisible = useOnScreen(ref)
+  const [bot, setBot] = useState("10%");
+
+  const [bottom, setBottom] = useState(0);
+  const [top, setTop] = useState(0);
+  const [fix, setFix] = useState(false);
+  const [listHeight, setListHeight] = useState(0);
+  const web = React.useRef();
+  const inView = useOnScreen(web);
+  const graphic = React.useRef();
+  const inView3 = useOnScreen(graphic);
+  const mech = React.useRef();
+  const inView4 = useOnScreen(mech);
+  const markting = React.useRef();
+  const inView2 = useOnScreen(markting)
+
+  // const { web, inView, entry } = useInView({
+  //   /* Optional options */
+  //   threshold: 0.2,
+  // });
+
+  const ref = React.useRef();
+  const ref1 = React.useRef();
+  const ref_list = React.useRef();
+  const changeBackground = () => {
+    // console.log(window.scrollY);
+    if (bottom - 650 >= window.scrollY && window.scrollY >= top-10) {
+      setFix(true);
+      console.log("hi");
+    } else {
+      setFix(false);
+    }
+    if (bottom - 650 <= window.scrollY){
+      setBot("75%")
+    }else if (window.scrollY <= top){
+      setBot("4%");
+      
+    }
+
+  };
+
+  React.useEffect(() => {
+    setBottom(ref.current.offsetTop + ref.current.offsetHeight);
+    setTop(ref.current.offsetTop);
+    setListHeight(ref_list.current.offsetHeight * 6);
+  }, [ref, ref_list]);
+
+  React.useEffect(() => {
+    changeBackground();
+    console.log(listHeight);
+
+    window.addEventListener("scroll", changeBackground);
+  });
+
   return (
-    <div className="service">
+    <div className="service" ref={ref1}>
       <div className="container">
         <FadeInSection>
           <h2 className={`Serve  is-visible `}>Our Service</h2>
         </FadeInSection>
         <div className="service_container">
-          <div className="left_side">
+          <div
+            className="left_side"
+    
+          >
             <ul
               className={`service_cat`}
-              style={
-                {
-                //   position: isVisible ? "fixed" : "relative",
-                //   top: isVisible ? "30%" : "30px",
-                //   bottom: isVisible ? "30%" : "10%",
-                }
-              }
+              style={{
+                position: fix ? "fixed" : "relative",
+                top: fix ? "20%" : bot,
+                // bottom: bot ? "100%" : "100%",
+              }}
             >
-              <li>
-                <div
-                  style={{ display: "flex" }}
-                  className={`web ${isWeb ? "active" : ""}`}
-                >
-                  <sup>01</sup> <p>Website Development</p>
+              <li ref={ref_list}>
+                <div style={{ display: "flex" }}>
+                  {/* {console.log(isVisible)} */}
+                  <sup>01</sup>{" "}
+                  <p className={`web ${inView ? "active" : ""}`}>
+                    Website Development{" "}
+                  </p>
                 </div>
               </li>
               <li>
                 <div
                   style={{ display: "flex" }}
-                  className={`strategy ${isMark ? "active" : ""}`}
-                >
+                  >
                   <sup>02</sup>
-                  <p> Strategy, Matkting&Maintenace</p>
+                  <p
+                  className={`strategy ${inView2 ? "active" : ""}`}
+                  
+                  > Strategy, Matkting&Maintenace</p>
                 </div>
               </li>
               <li>
                 <div
                   style={{ display: "flex" }}
-                  className={`web ${isGrpahic ? "active" : ""}`}
-                >
+                  >
                   <sup>03</sup>
-                  <p>Graphic Design</p>
+                  <p
+                  className={`web ${inView3 ? "active" : ""}`}
+                  >Graphic Design</p>
                 </div>
               </li>
               <li>
                 <div
                   style={{ display: "flex" }}
-                  className={`web ${isMech ? "active" : ""}`}
-                //   ref={ref}
-
+                
                 >
                   <sup>04</sup>
-                  <p> Mchanical Design</p>
+                  <p
+                  className={`web ${inView4 ? "active" : ""}`}
+                  
+                  > Mchanical Design</p>
                 </div>
               </li>
             </ul>
           </div>
-          <div className="right_side">
-            
-          {/* {console.log(isVisible)} */}
+          <div className="right_side" ref={ref}>
+            {/* {console.log(isVisible)} */}
             <FadeInSection>
               <div
                 className={`web`}
-                // style={{ display: !isWeb ? "none" : "" }}
+                // style={{ display: !inView1 ? "none" : "" }}
+                ref={web}
               >
                 <ul>
                   <li>UX</li>
@@ -94,7 +148,8 @@ const Service = () => {
             </FadeInSection>
             <div
               className="markting"
-            //   ref={ref}
+              ref={markting}
+
               // style={{ display: !isMarkting ? "none" : "" }}
             >
               <ul>
@@ -116,6 +171,8 @@ const Service = () => {
             <div
               className="graphic"
               // style={{ display: !isGraphic ? "none" : "" }}
+              ref={graphic}
+
             >
               <ul>
                 <li>Flyer</li>
@@ -138,6 +195,8 @@ const Service = () => {
             <div
               className="mech"
               // style={{ display: !isMech ? "none" : "" }}
+              ref={mech}
+
             >
               <ul>
                 <li>SOLIDWORKS</li>

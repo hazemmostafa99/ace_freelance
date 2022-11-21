@@ -16,6 +16,8 @@
 
 .service_cat {
   margin-top: 20px;
+  margin-bottom: 20px;
+
 }
 
 .service_cat li {
@@ -29,7 +31,12 @@
   font-family: "Lato", sans-serif;
   color: #000000;
 }
-
+.service_cat li div p.active {
+  color: blue;
+  /* cursor: pointer; */
+  /* text-decoration: underline; */
+  font-size: 33px;
+}
 /* right side section */
 
 .right_side div {
@@ -71,4 +78,11 @@
   font-weight: bold;
   /* padding-bottom: 20px; */
   font-family: "Lato", sans-serif;
+}
+
+
+
+.left_side{
+  display: flex;
+  flex-wrap: wrap;
 }
