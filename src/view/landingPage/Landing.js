@@ -1,15 +1,23 @@
 import React from "react";
-import Club from "./club/club";
+import About from "./components/About-us/about";
+import Blog from "./components/blog/blog";
+import Club from "./components/club/club";
+import Contact from "./components/contact-us/contact";
 import Herosection from "./components/Hero/hero";
 import Navbar from "./components/navbar/Navbar";
-import Service from './components/service/service'
+import Project from "./components/projects/projects";
+import Service from "./components/service/service";
 const Landing = () => {
   return (
     <>
       <Navbar />
       <Herosection />
-      <Service/>
-      <Club/>
+      <Service />
+      <Club />
+      <About />
+      <Project />
+      <Blog />
+      <Contact />
     </>
   );
 };
